@@ -7,9 +7,9 @@ header{
   text-shadow: 2px 2px 5px black;
 }
 
-main{
+/* main{
   height: calc(100vh - 152px);
-}
+} */
 
 footer{
   background: rgb(0,212,255);
@@ -22,4 +22,8 @@ footer{
 
 .lobster{
   font-family: 'Lobster', cursive;
+}
+
+.nomb{
+  margin-bottom: 0;
 }
