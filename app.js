@@ -76,8 +76,8 @@ function addToppingToCart(id){
 }
 function addContainerToCart(id){
   let container = containers.find(c => c.id == id)
-  let alreadyInCart = cart.container
 
+  cart.container = container
   
 
 }
