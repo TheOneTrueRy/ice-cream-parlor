@@ -75,15 +75,10 @@ function addToppingToCart(id){
 
 }
 function addContainerToCart(id){
-let added = containers.find(c => c.id == id)
+  let container = containers.find(c => c.id == id)
+  let alreadyInCart = cart.container
 
-if (cart.container) {
-  cart.splice(containers)
-  cart.container.push(added)
   
-}else{
-  cart.container.push(added)
-}
 
 }
 
@@ -108,7 +103,7 @@ function drawCream(){
       <p class="lobster">${item.name}</p>
       <p>$${item.price}</p>
     </div>
-    <button class="btn btn-outline-success">Add</button>
+    <button onclick="addIceCreamToCart('${item.id}')" class="btn btn-outline-success">Add</button>
   </div>
 </div>`
   })
@@ -131,7 +126,7 @@ function drawToppings(){
       <p class="lobster">${item.name}</p>
       <p>$${item.price}</p>
     </div>
-    <button class="btn btn-outline-success">Add</button>
+    <button onclick="addToppingToCart('${item.id}')" class="btn btn-outline-success">Add</button>
   </div>
 </div>`
   })
@@ -154,7 +149,7 @@ function drawContainers(){
       <p class="lobster">${item.name}</p>
       <p>$${item.price}</p>
     </div>
-    <button class="btn btn-outline-success">Add</button>
+    <button onclick="addContainerToCart('${item.id}')" class="btn btn-outline-success">Add</button>
   </div>
 </div>`
   })
