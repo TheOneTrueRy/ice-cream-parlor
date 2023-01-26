@@ -36,12 +36,14 @@ const containers = [{
   name: 'Waffle Cone',
   image: 'https://m.media-amazon.com/images/I/71VNjBMakfL._SL1500_.jpg',
   price: 2,
-  id: 'c1'
+  id: 'c1',
+  quantity: 1
 }, {
   name: 'Waffle Bowl',
   image: 'http://images.wbmason.com/350/L_JOY66050.jpg',
   price: 4,
-  id: 'c2'
+  id: 'c2',
+  quantity : 1
 }]
 
 let cart = {
@@ -60,7 +62,7 @@ function addIceCreamToCart(id){
   }else{
     alreadyInCart.quantity++
   }
-
+  drawCart()
 }
 function addToppingToCart(id){
   let added = toppings.find(t => t.id == id)
@@ -72,14 +74,14 @@ function addToppingToCart(id){
   }else{
     alreadyInCart.quantity++
   }
-
+  drawCart()
 }
 function addContainerToCart(id){
   let container = containers.find(c => c.id == id)
 
   cart.container = container
   
-
+  drawCart()
 }
 
 function drawStore(){
@@ -158,7 +160,61 @@ function drawContainers(){
 }
 
 function drawCart(){
+  let cartItemsElem = document.getElementById("added-items")
+  let template = ''
 
+if(cart.container.length > 0){
+  let container = cart.container
+  template += `
+  <div class="col-4">
+  <p class="lobster">${container.name}</p>
+</div>
+<div class="col-3">
+  <p>${container.quantity}</p>
+</div>
+<div class="col-3">
+  <p>$${container.price}</p>
+</div>
+<div class="col-2">
+  <button class="btn btn-danger mdi mdi-delete"></button>
+</div>
+  `
+}
+
+  cart.iceCream.forEach(item =>{
+    template += `
+    <div class="col-4">
+    <p class="lobster">${item.name}</p>
+  </div>
+  <div class="col-3">
+    <p>${item.quantity}</p>
+  </div>
+  <div class="col-3">
+    <p>$${item.price}</p>
+  </div>
+  <div class="col-2">
+    <button class="btn btn-danger mdi mdi-delete"></button>
+  </div>
+    `
+  })
+  cart.toppings.forEach(item =>{
+    template += `
+    <div class="col-4">
+    <p class="lobster">${item.name}</p>
+  </div>
+  <div class="col-3">
+    <p>${item.quantity}</p>
+  </div>
+  <div class="col-3">
+    <p>$${item.price}</p>
+  </div>
+  <div class="col-2">
+    <button class="btn btn-danger mdi mdi-delete"></button>
+  </div>
+    `
+  })
+  cartItemsElem.innerHTML = template
+  
 }
 
 function calculateTotalPrice(){
